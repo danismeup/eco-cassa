@@ -10,3 +10,5 @@
 /electron/node_modules/.bin/acorn
 /electron/obj/Debug
 /eco.cassa.front/obj/Debug
+/Eco.Cassa.Api/bin/Debug/net9.0
+/node_modules

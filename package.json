@@ -8,6 +8,7 @@
     "start:backend": "dotnet run --project Eco.Cassa.Api/Eco.Cassa.Api.csproj",
     "start:frontend": "npm run dev --prefix eco.cassa.front",
     "start:electron": "electron electron/main.js",
+    "start:dev": "concurrently -k \"npm: start:backend\" \"npm: start:frontend\" \"wait-on http://localhost:5173 http://localhost:5000 && npm run start:electron\"",
     "build:frontend": "npm run build --prefix eco.cassa.front",
     "build:backend": "dotnet publish Eco.Cassa.Api/Eco.Cassa.Api.csproj  -c Release -o ./publish",
     "pack": "electron-builder --dir",
@@ -16,7 +17,9 @@
   "devDependencies": {
     "@octokit/rest": "^22.0.0",
     "electron": "^38.2.2",
-    "electron-builder": "^26.0.12"
+    "electron-builder": "^26.0.12",
+    "concurrently": "^8.2.0",
+    "wait-on": "^7.0.1"
   },
   "repository": {
     "type": "git",
