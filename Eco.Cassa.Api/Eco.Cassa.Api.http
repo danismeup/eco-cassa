@@ -1,0 +1,6 @@
+@Eco.Cassa.Api_HostAddress = http://localhost:5188
+
+GET {{Eco.Cassa.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

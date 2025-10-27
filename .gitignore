@@ -3,3 +3,10 @@
 ################################################################################
 
 /.vs
+/.env
+/Eco.Cassa.Api/obj
+/electron/.vscode
+/electron/node_modules
+/electron/node_modules/.bin/acorn
+/electron/obj/Debug
+/eco.cassa.front/obj/Debug

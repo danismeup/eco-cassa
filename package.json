@@ -1,0 +1,65 @@
+{
+  "name": "eco-cassa",
+  "version": "1.0.0",
+  "description": "Cassa automatica per ordini e pagamenti",
+  "author": "Daniele Oppezzo <daniele.oppezzo@smeup.com>",
+  "main": "electron/main.js",
+  "scripts": {
+    "start:backend": "dotnet run --project Eco.Cassa.Api/Eco.Cassa.Api.csproj",
+    "start:frontend": "npm run dev --prefix eco.cassa.front",
+    "start:electron": "electron electron/main.js",
+    "build:frontend": "npm run build --prefix eco.cassa.front",
+    "build:backend": "dotnet publish Eco.Cassa.Api/Eco.Cassa.Api.csproj  -c Release -o ./publish",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "@octokit/rest": "^22.0.0",
+    "electron": "^38.2.2",
+    "electron-builder": "^26.0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danismeup/eco-cassa.git"
+  },
+  "build": {
+    "appId": "com.danismeup.eco-cassa",
+    "icon": "assets/icon.ico",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "electron/**/*",
+      "eco.cassa.front/dist/**/*",
+      "!**/node_modules/*/{test,__tests__}/**"
+    ],
+    "extraResources": [
+      {
+        "from": "publish/",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "danismeup",
+        "repo": "eco-cassa-binary"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "artifactName": "eco-cassa.Setup.${version}.${ext}"
+  },
+  "private": true,
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.6.2"
+  }
+}
